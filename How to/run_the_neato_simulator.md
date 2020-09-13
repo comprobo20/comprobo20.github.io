@@ -117,7 +117,7 @@ This documentation gives the high-level purpose of each topic.  To explore more,
 $ rostopic info topic-name
 ```
 
-If you want to know more about a message you see in the output of ``rostopic`` you can use the following command (note that the ``-r`` flag can be ommitted if you want to the mesasges nested within the top-level message to be expanded).
+If you want to know more about a message you see in the output of ``rostopic`` you can use the following command (note that the ``-r`` flag can be ommitted if you want to the messages nested within the top-level message to be expanded).
 
 ```bash
 $ rosmsg show msg_package_name/MessageName -r
@@ -133,7 +133,7 @@ This topic contains four binary outputs corresponding to each of the Neato's fou
 
 ### ``bumper``
 
-This is an internal topic to Gazebo.  If you are curiouts, you can look at the output as you run into something, but you don't need to worry about it in this class.
+This is an internal topic to Gazebo.  If you are curious, you can look at the output as you run into something, but you don't need to worry about it in this class.
 
 ### ``clock``
 
@@ -189,7 +189,7 @@ This provides the LIDAR measusrements (think of these as detected obstsacles or 
 
 ### ``raw_vel``
 
-you publish to this topic set the left and right wheel velocities independently (rather than setting linear and angular velocities).  You can use this is ``cmd_vel`` for controlling the robot, whichever is easier.
+you publish to this topic set the left and right wheel velocities independently (rather than setting linear and angular velocities).  You can use this as ``cmd_vel`` for controlling the robot, whichever is easier.
 
 ### ``rosout``
 
@@ -226,11 +226,11 @@ float32[] ranges
 float32[] intensities
 ```
 
-Most of these attributes you can ignore for the purposes of this assignment. The one that you will really need to dig into is ranges. The ranges attribute provides 361 numbers where each number corresponds to the distance to the closest obstacle as detected by the laser scan at various angles relative to the robot. Each measurement is spaced exactly 1 degree apart. The first measurement corresponds to 0 degrees in the image of the Neato above. As the degrees in the image go up, so to does the index in the ranges array. Where does 361 come from? The last measurement (index 360) is the same as the first (index 0). Why do we do this craziness?!? We have to do this to adhere to some ROS conventions around LaserScan data that will be important later in the class. For now, you can safely ignore the last measurement (index 360).
+Most of these attributes you can ignore for the purposes of this assignment. The one that you will really need to dig into is ranges. The ranges attribute provides 361 numbers where each number corresponds to the distance to the closest obstacle as detected by the laser scan at various angles relative to the robot. Each measurement is spaced exactly 1 degree apart. The first measurement corresponds to 0 degrees in the image of the Neato above. As the degrees in the image go up, so too does the index in the ranges array. Where does 361 come from? The last measurement (index 360) is the same as the first (index 0). Why do we do this craziness?!? We have to do this to adhere to some ROS conventions around LaserScan data that will be important later in the class. For now, you can safely ignore the last measurement (index 360).
 
 ### ``stable_scan``
 
-This gives the same data as ``scan`` except the timestamp is automatically adjusted to keep the detected points stable in the odometry frame.  This topic is really only need with the physical Neato robot where the precise timing of the LIDAR is not available due to hardware limitations.
+This gives the same data as ``scan`` except the timestamp is automatically adjusted to keep the detected points stable in the odometry frame.  This topic is really only needed with the physical Neato robot where the precise timing of the LIDAR is not available due to hardware limitations.
 
 ### ``tf``
 
@@ -248,7 +248,7 @@ Once the simulator is running, to start rviz, run the following command.
 $ rosrun rviz rviz
 ```
 
-Once you get to rviz, the warmup project has some good instructionns for how to see the robot and its LIDAR.
+Once you get to rviz, the warmup project has some good instructions for how to see the robot and its LIDAR.
 
 1. Set the base_frame to ``odom``
 2. Add a visualization of the Neato's stabilized laser scan (topic ``scan``).  This is most easily found by using the "By topic" tab.  Make sure to adjust the size of the markers so you can see them easily).
@@ -295,6 +295,6 @@ Using the "move" tool in Gazebo, you can select your robot and move it around (s
 
 Oftentimes you may be trying to get your robot to execute a certain behavior.  With a physical robot, you will usually assess success by observing its behavior visually.  In a simulator, you can actually "cheat" and read the robot's true state right from ROS.  For example, if you were trying to get your robot to drive a square, you could compare the intended square to the actual square by reading the robot's state.  The robot's state is available on the ROS topic ``gazebo/model_states``.
 
-## Shuting Down the Simulator
+## Shutting Down the Simulator
 
 Go to the terrminal where you executed **step 2** (launch Gazebo) and hit control-c.
